@@ -2,13 +2,12 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2017/11/20 下午3:15
 # @Author  : Yanheng Wei
-# @Site    : Haizhi
 # @File    : zigzag.py
 # @Software: PyCharm
 
 '''
-sub_problem: 前i个数的最长zigzag，定义其状态为d[i]，同时记录d[i]中最长zigzag串的末尾位置
-状态转移：（1）
+sub_problem: 前i个数的最长zigzag，定义其状态为d[i]，这里需要注意的根据序列的增长率，有两种序列状态，增序列和减序列，如果当前数字比前一个数字大，此时该序列为增序列，反之，则为减序列。
+状态转移：由于序列的有两种状态，那么状态转移需要根据两种状态分别进行状态转移，最终判定得出最长子序列。
 
 '''
 
