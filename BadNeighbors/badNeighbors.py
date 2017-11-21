@@ -5,6 +5,10 @@
 # @File    : badNeighbors.py
 # @Software: PyCharm
 
+'''
+这里重点需要注意的是状态的确定，有两个状态：包含当前值和不包含当前值；此外一定要考虑特殊情况：在队列末尾处，
+需要考虑当前的最长序列包不包含top值，因此将此问题转化为前n-1和后n-1个序列中求取最大不连续子序列的问题。
+'''
 
 class BadNeighbors(object):
 	'''
