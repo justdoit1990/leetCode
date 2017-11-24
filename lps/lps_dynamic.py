@@ -31,8 +31,8 @@ class Solution(object):
 		end = 0
 		lps_length = 1
 		# d = [1]*len(s)  # the length of the lsp begin with i-th char in s
-		for i in range(len(s)-1):
-			for j in range(len(s)-1, i, -1):
+		for i in range(len(s)):
+			for j in range(end+1, len(s)):
 				if s[i] == s[j] and j-i+1 > lps_length and self.isLsp(s, i, j):
 					lps_length = j-i+1
 					start = i
@@ -41,7 +41,7 @@ class Solution(object):
 		return start, end, s[start:end+1]
 
 if __name__ == "__main__":
-	s = 'a'
+	s = 'abbacdefedc'
 	slu_ob = Solution()
 	print slu_ob.longestPalindrome(s)
 
