@@ -9,8 +9,11 @@
 class FlowerGarden(object):
 
 	def getOrdering(self, height, bloom, wilt):
+
 		flowers = zip(height, bloom, wilt)
 		flowers.sort()
+		# print flowers
+
 		def flowersOverlap(f1, f2):
 			# Overlap if each blooms before the other wilts.
 			return f2[1] <= f1[2] and f1[1] <= f2[2]
@@ -24,17 +27,16 @@ class FlowerGarden(object):
 			while rowIndex > 0 and not flowersOverlap(flower, rows[rowIndex - 1]):
 				rowIndex -= 1
 			rows[rowIndex:rowIndex] = [flower]
+			print rows
 
 		return [flower[0] for flower in rows]
 
 
 
-
-
 if __name__ == "__main__":
-	height = [1, 2, 3, 4, 5, 6]
-	bloom = [1, 3, 1, 3, 1, 3]
-	wilt = [2, 4, 2, 4, 2, 4]
+	height = [3, 2, 5, 4]
+	bloom = [1, 2, 11, 10]
+	wilt = [4, 3, 12, 13]
 
 	lg = FlowerGarden()
 	print lg.getOrdering(height, bloom, wilt)
