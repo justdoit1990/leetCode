@@ -13,28 +13,30 @@ class AovidRoads(object):
 
 		num_way = np.zeros((height+1, weight+1))
 
-		num_way[0][0] = 1
+		# num_way[0][0] = 1
 
 		# print num_way
 
-		for i in range(height+1):
-			for j in range(weight+1):
-				if ((i, j) in bad and (i-1, j) in bad) and ((i, j) in bad and (i, j-1) in bad):
+		for i in range( height+1):
+			for j in range( weight+1):
+				if i == 0 and j == 0:
+					continue
+				if ((i-1, j-1) in bad and (i-1, j) in bad) and ((i, j) in bad and (i, j-1) in bad):
 					num_way[i][j] = 0
-				elif (i, j) in bad and (i-1, j) in bad:
+				elif (i-1, j-1) in bad and (i-1, j) in bad and j-1 >= 0:
 					# print 's'
-					num_way[i][j] += num_way[i][j-1]
-				elif (i, j) in bad and (i, j-1) in bad:
+					num_way[i][j] = num_way[i][j-1]+1
+				elif (i-1, j-1) in bad and (i, j-1) in bad and i-1 >= 0:
 					# print 's'
-					num_way[i][j] += num_way[i-1][j]
-				else:
+					num_way[i][j] = num_way[i-1][j]+1
+				elif i-1 >= 0 and j-1 >= 0:
 					# print i,j
-					num_way[i][j] += num_way[i][j-1]+num_way[i-1][j]
+					num_way[i][j] = num_way[i][j-1]+num_way[i-1][j]+2
 
 		return num_way[-1][-1]
 
 if __name__ == "__main__":
 	ar = AovidRoads()
-	print ar.numWays(6, 6, [(0,0),(1,0),(6,6),(5,6)])
+	print ar.numWays(6, 6, [(0, 0), (1, 0), (6, 6), (5, 6)])
 	# print ar.numWays(6,6,[None])
 
